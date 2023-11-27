@@ -1,0 +1,37 @@
+<h1 class="header-heading">
+    <a class="header-link" href="{% url 'contact:index' %}">
+        Agenda
+    </a>
+</h1>
+
+<nav class="menu">
+<ul class="menu-list">
+
+    {% if user.is_authenticated %}
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'contact:create' %}">Create</a>
+        </li>  
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'contact:user_update' %}">Profile</a>
+        </li>  
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'contact:logout_view' %}">Log Out</a>
+        </li>  
+    {% else %}
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'contact:register' %}">Register</a>
+        </li>  
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'contact:login_view' %}">Log In</a>
+        </li>  
+    {% endif %}
+
+</ul>
+</nav>
+
+
+<div class="search">
+<form action="{% url 'contact:search' %}" method="GET">
+    <input type="search" class="search-input" placeholder="Search" id="search" name="q" value="{{request.GET.q.strip}}">
+</form>
+</div>
